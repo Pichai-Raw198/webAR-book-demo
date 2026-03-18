@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const mindarThree = new MindARThree({
       container: document.body,
-      imageTargetSrc: './targets/targets.mind',
+      imageTargetSrc: './targets/targetsFirstAid.mind', // ✅ ใช้ชื่อของคุณ
       maxTrack: 5,
     });
 
@@ -30,14 +30,14 @@ document.addEventListener('DOMContentLoaded', () => {
       return { video, plane };
     };
 
-    // 🎬 วิดีโอทั้ง 5 ตัว (จากลิงก์คุณ)
+    // 🎬 วิดีโอ 5 ตัว (ลิงก์ของคุณ)
     const v1 = createVideoPlane('https://drive.google.com/uc?export=download&id=1_6M0cGr4W2Uaxnc5s60gs-juWWpRZSKW');
     const v2 = createVideoPlane('https://drive.google.com/uc?export=download&id=1FYajn2WySKK0qFJy-okSb-rXSMlzfCsY');
     const v3 = createVideoPlane('https://drive.google.com/uc?export=download&id=18u9uqh2HFA312dBAe_rH3gRe6vDP_V4J');
     const v4 = createVideoPlane('https://drive.google.com/uc?export=download&id=1TVrG30cEwKmJF6VkfoIGCjMcAT-LnpC8');
     const v5 = createVideoPlane('https://drive.google.com/uc?export=download&id=1d7Z31f2bOq8IrbUU4s3s2Dd8wGc6Xg5Q');
 
-    // 🎯 ผูกกับ marker
+    // 🎯 ผูก marker
     const anchors = [
       { data: v1, anchor: mindarThree.addAnchor(0) },
       { data: v2, anchor: mindarThree.addAnchor(1) },
@@ -63,6 +63,12 @@ document.addEventListener('DOMContentLoaded', () => {
     renderer.setAnimationLoop(() => {
       renderer.render(scene, camera);
     });
+
+    // 👇 เผื่อบางเครื่องต้องแตะจอ
+    document.body.addEventListener('click', () => {
+      document.querySelectorAll('video').forEach(v => v.play());
+    });
+
   };
 
   start();
