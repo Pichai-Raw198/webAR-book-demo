@@ -1,32 +1,23 @@
-<!DOCTYPE html>
 <html>
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>My First WebAR</title>
+    <script src="https://aframe.io/releases/1.4.2/aframe.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/mind-ar@1.2.2/dist/mindar-image-aframe.prod.js"></script>
+  </head>
+  <body>
+    <a-scene mindar-image="imageTargetSrc: ./targets1.mind;" color-space="sRGB" renderer="colorManagement: true, physicallyCorrectLights" vr-mode-ui="enabled: false" device-orientation-permission-ui="enabled: false">
+      
+      <a-assets>
+        <a-asset-item id="my3DModel" src="./model1.glb"></a-asset-item>
+      </a-assets>
 
-  <!-- รองรับ importmap -->
-  <script async src="https://unpkg.com/es-module-shims@1.7.3/dist/es-module-shims.js"></script>
+      <a-camera position="0 0 0" look-controls="enabled: false"></a-camera>
 
-  <!-- import library -->
-  <script type="importmap">
-  {
-    "imports": {
-      "three": "https://unpkg.com/three@0.153.0/build/three.module.js",
-      "three/addons/": "https://unpkg.com/three@0.153.0/examples/jsm/",
-      "mindar-image-three": "https://cdn.jsdelivr.net/npm/mind-ar@1.2.2/dist/mindar-image-three.prod.js"
-    }
-  }
-  </script>
-
-  <script src="main.js" type="module"></script>
-
-  <style>
-    body {
-      margin: 0;
-      overflow: hidden;
-    }
-  </style>
-</head>
-<body>
-</body>
+      <a-entity mindar-image-target="targetIndex: 0">
+        <a-gltf-model src="#my3DModel" scale="0.5 0.5 0.5" position="0 0 0" rotation="0 0 0"></a-gltf-model>
+      </a-entity>
+      
+    </a-scene>
+  </body>
 </html>
